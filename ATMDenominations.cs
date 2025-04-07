@@ -6,20 +6,16 @@ public class ATMDenominations
     static int[] PAYOUT_AMOUNTS = new int[] { 30, 50, 60, 80, 140, 230, 370, 610, 980 };
     static int[] DENOMINATIONS = new int[] { 100, 50, 10 };
 
-
     public static void Main(string[] args)
     {
-
         foreach (int amount in PAYOUT_AMOUNTS)
         {
             CalculatePayoutCombinations(amount);
         }
     }
 
-
     public static void CalculatePayoutCombinations(int targetAmount)
     {
-
         List<List<int>> allCombinations = new List<List<int>>();
         FindDenominations(targetAmount, 0, new List<int>(), allCombinations);
 
@@ -39,19 +35,15 @@ public class ATMDenominations
                 denominationCounts[note]++;
             }
 
-            string combinationString = "";
+            string results = "";
             foreach (var key in denominationCounts.OrderByDescending(k => k.Key))
             {
-                combinationString += $"{key.Value} x {key.Key} EUR + ";
+                results += $"{key.Value} x {key.Key} EUR + ";
             }
 
-            Console.WriteLine(combinationString.TrimEnd('+', ' '));
+            Console.WriteLine(results.TrimEnd('+', ' '));
         }
-
-        Console.WriteLine();
     }
-
-
 
     static void FindDenominations(int amount, int index, List<int> current, List<List<int>> allCombinations)
     {
@@ -72,5 +64,4 @@ public class ATMDenominations
             }
         }
     }
-
 }
